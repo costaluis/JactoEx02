@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Principal.qml</file>
+        <file>Recebe.qml</file>
     </qresource>
 </RCC>

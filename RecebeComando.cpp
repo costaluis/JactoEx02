@@ -7,6 +7,7 @@ RecebeComando::RecebeComando(QObject *parent) : QObject(parent), Mensageiro(zmq:
 }
 
 RecebeComando::~RecebeComando() {
+    this->stopReceiveMessage();
     this->closeConnection();
 }
 
@@ -19,7 +20,7 @@ void RecebeComando::stopReceiveMessage() {
     if (_receiver_thread.joinable()) {
         _receiver_thread.join();
     }
-    _socket->set(zmq::sockopt::unsubscribe, "");
+    _socket->set(zmq::sockopt::unsubscribe, _old_topic);
 }
 
 
@@ -29,6 +30,7 @@ void RecebeComando::receiveMessage() {
     }
 
     _socket->set(zmq::sockopt::subscribe, _topic.toStdString());
+    _old_topic = _topic.toStdString();
 
     _running.store(true);
     _receiver_thread = std::thread([this](){

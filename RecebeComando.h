@@ -27,6 +27,7 @@ private:
     QString _msg;
     std::thread _receiver_thread;
     std::atomic_bool _running {false};
+    std::string _old_topic;
 };
 
 #endif // RECEBECOMANDO_H

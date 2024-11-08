@@ -1,28 +1,16 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
-import Cpp_Elements 1.0
 
 ApplicationWindow {
+    title: qsTr("Exercício 02")
     width: 640
     height: 480
     visible: true
-    title: qsTr("Exercício 02")
 
-
-    RecebeComando {
-        id: recebeComando
-
-        topic: "test"
-        message: "testando"
-
-        Component.onCompleted: {
-            recebeComando.receiveMessage()
-        }
+    StackView {
+        id: myStackView
+        initialItem: "Principal.qml"
+        anchors.fill: parent
     }
-
-    Text {
-        text: recebeComando.message
-    }
-
 }
